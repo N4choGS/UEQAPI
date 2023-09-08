@@ -69,3 +69,5 @@ BEGIN
 
     SET @counter = @counter + 1
 END
+
+select * from Questionnaire

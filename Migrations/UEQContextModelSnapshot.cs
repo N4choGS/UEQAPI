@@ -8,7 +8,7 @@ using UEQData.Models;
 
 #nullable disable
 
-namespace UEQData.Migrations
+namespace UEQAPI.Migrations
 {
     [DbContext(typeof(UEQContext))]
     partial class UEQContextModelSnapshot : ModelSnapshot

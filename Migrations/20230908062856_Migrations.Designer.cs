@@ -9,11 +9,11 @@ using UEQData.Models;
 
 #nullable disable
 
-namespace UEQData.Migrations
+namespace UEQAPI.Migrations
 {
     [DbContext(typeof(UEQContext))]
-    [Migration("20230903232758_Initial")]
-    partial class Initial
+    [Migration("20230908062856_Migrations")]
+    partial class Migrations
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
