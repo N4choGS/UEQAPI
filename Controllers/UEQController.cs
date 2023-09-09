@@ -16,7 +16,7 @@ namespace UEQData.Controllers
 
         // GET: api/Questionnaires
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Questionnaire>>> GetQuestionnaireData(string projectIds,  string startDate, string? moduleIds, string? endDate) { 
+        public async Task<ActionResult<IEnumerable<QuestionnaireResponse>>> GetQuestionnaireData(string projectIds,  string startDate, string? moduleIds, string? endDate) { 
             if(_dbContext == null)
             {
                 return NotFound();
@@ -48,7 +48,62 @@ namespace UEQData.Controllers
                 filteredProducts = filteredProducts.Where(question => intModuleIdsArray.Contains(question!.moduleId!.Value)).ToList();
             }
 
-            return filteredProducts;
+            List<QuestionnaireResponse> listQuestResponse = new List<QuestionnaireResponse>();
+
+            foreach (Questionnaire quest in filteredProducts)
+            {
+                QuestionnaireResponse questResponse = new QuestionnaireResponse
+                {
+                    Id = quest.Id,
+                    moduleId = quest.moduleId,
+                    projectId = quest.projectId,
+                    createdDate = quest.createdDate,
+                    attractiveness = new Attractiveness {
+                        annoying_enjoyable = quest.annoying_enjoyable,
+                        bad_good = quest.bad_good,
+                        unlikable_pleasing = quest.unlikable_pleasing,
+                        unpleasant_pleasant  = quest.unpleasant_pleasant,
+                        unattractive_attractive = quest.unattractive_attractive,
+                        unfriendly_friendly  = quest.unfriendly_friendly,
+
+                    },
+                    novelty = new Novelty {
+                        dull_creative = quest.dull_creative,
+                        usual_leadingEdge = quest.usual_leadingEdge,
+                        conventional_inventive = quest.conventional_inventive,
+                        conservative_innovative = quest.conservative_innovative,
+                    },
+                    dependability = new Dependability {
+                        unpredictable_predictable = quest.unpredictable_predictable ,
+                        notSecure_secure = quest.notSecure_secure ,
+                        doesNotMeetExpectations_meetsExpectations = quest.doesNotMeetExpectations_meetsExpectations ,
+                        obstructive_supportive = quest.obstructive_supportive ,
+
+                    },
+                    efficiency = new Efficiency {
+                        slow_fast = quest.slow_fast ,
+                        inefficient_efficient = quest.inefficient_efficient ,
+                        impractical_practical = quest.impractical_practical,
+                        cluttered_organized = quest.cluttered_organized ,
+                    },
+                    perspecuity = new Perspecuity {
+                        unpredictable_predictable = quest.unpredictable_predictable,
+                        difficultToLearn_easyToLearn= quest.difficultToLearn_easyToLearn,
+                        complicated_easy = quest.complicated_easy,
+                        confusing_clear= quest.confusing_clear,
+                    },
+                    stimulation = new Stimulation {
+                        inferior_valuable = quest.inferior_valuable,
+                        boring_exciting = quest.boring_exciting,
+                        notInteresting_interesting = quest.notInteresting_interesting ,
+                        motivating_demotivating = quest.motivating_demotivating,
+                    } ,
+                };
+
+                listQuestResponse.Add(questResponse);
+            }
+
+            return listQuestResponse;
         } 
     }
 }
