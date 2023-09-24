@@ -87,7 +87,7 @@ namespace UEQData.Controllers
                         cluttered_organized = quest.cluttered_organized ,
                     },
                     perspecuity = new Perspecuity {
-                        unpredictable_predictable = quest.unpredictable_predictable,
+                        notUnderstandable_understandable = quest.notUnderstandable_understandable,
                         difficultToLearn_easyToLearn= quest.difficultToLearn_easyToLearn,
                         complicated_easy = quest.complicated_easy,
                         confusing_clear= quest.confusing_clear,
